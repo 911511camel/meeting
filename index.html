@@ -1,0 +1,2213 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Bilingual Bridge · Multi-Party Crypto Deal Room</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;800;900&family=Chakra+Petch:wght@400;600;700&family=JetBrains+Mono:wght@400;500;700&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body style="margin:0;padding:0;background:#02060b;color:#e8f4f8;font-family:'Plus Jakarta Sans',sans-serif;min-height:100vh;">
+<div id="bridge" aria-label="Bilingual Bridge cyberpunk crypto deal room">
+<div class="startup-banner">NIKOLAS SEGURADO &mdash; STARTUP PROJECT</div>
+<style>
+  :root {
+    --c: #00f0ff;
+    --c-glow: rgba(0, 240, 255, 0.4);
+    --v: #bd00ff;
+    --v-glow: rgba(189, 0, 255, 0.35);
+    --a: #fbee00;
+    --a-glow: rgba(251, 238, 0, 0.35);
+    --gold: #ffb703;
+    --magenta: #ff0055;
+    --bg-dark: #03080e;
+    --bg-panel: #06111e;
+    --bg-surface: #0a1b2d;
+    --border-light: rgba(0, 240, 255, 0.16);
+    --border-subtle: rgba(100, 150, 180, 0.14);
+    --text-primary: #e6f6f9;
+    --text-secondary: #8aa4b8;
+    --text-muted: #536d80;
+  }
+
+  #bridge {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    background: radial-gradient(circle at 90% 8%, rgba(189, 0, 255, 0.18), transparent 38%),
+                radial-gradient(circle at 10% 92%, rgba(0, 240, 255, 0.14), transparent 42%),
+                linear-gradient(180deg, #02060b 0%, #050e18 50%, #02060c 100%);
+    box-sizing: border-box;
+    position: relative;
+    overflow: hidden;
+  }
+
+  #bridge * {
+    box-sizing: border-box;
+  }
+
+  #bridge::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(0, 240, 255, 0.015) 3px);
+    pointer-events: none;
+    z-index: 10;
+  }
+
+  /* Header Bar */
+  .bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 16px;
+    padding: 14px 24px;
+    background: rgba(6, 17, 30, 0.88);
+    backdrop-filter: blur(16px);
+    border-bottom: 1px solid var(--border-light);
+    box-shadow: 0 4px 24px rgba(0, 0, 0, 0.4);
+    z-index: 20;
+  }
+
+  .brand {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+  }
+
+  .logo {
+    display: grid;
+    place-items: center;
+    width: 44px;
+    height: 44px;
+    font-size: 24px;
+    color: #03080e;
+    background: linear-gradient(135deg, #00f0ff 0%, #00a8ff 50%, #bd00ff 100%);
+    clip-path: polygon(25% 0%, 75% 0%, 100% 25%, 100% 75%, 75% 100%, 25% 100%, 0% 75%, 0% 25%);
+    box-shadow: 0 0 20px var(--c-glow);
+    animation: logoGlow 4s ease-in-out infinite alternate;
+  }
+
+  @keyframes logoGlow {
+    0% { filter: drop-shadow(0 0 6px rgba(0, 240, 255, 0.6)); }
+    100% { filter: drop-shadow(0 0 16px rgba(189, 0, 255, 0.8)); }
+  }
+
+  h1 {
+    margin: 0;
+    font-family: 'Orbitron', 'Chakra Petch', sans-serif;
+    color: var(--c);
+    font-size: 18px;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    text-shadow: 0 0 16px var(--c-glow);
+  }
+
+  .by {
+    margin: 2px 0 0;
+    font-size: 11px;
+    color: var(--text-secondary);
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+
+  .by b {
+    display: inline-block;
+    color: var(--a);
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    background: rgba(251, 238, 0, 0.12);
+    border: 1px solid rgba(251, 238, 0, 0.28);
+    padding: 1px 7px;
+    border-radius: 4px;
+    letter-spacing: 0.08em;
+  }
+
+  .header-meta {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .parties-pill {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    font-weight: 600;
+    color: #4ade80;
+    background: rgba(34, 197, 94, 0.1);
+    border: 1px solid rgba(34, 197, 94, 0.3);
+    padding: 6px 12px;
+    border-radius: 20px;
+    letter-spacing: 0.05em;
+  }
+
+  .pulse-dot {
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: #4ade80;
+    box-shadow: 0 0 10px #4ade80;
+    animation: blink 1.6s ease-in-out infinite;
+  }
+
+  @keyframes blink {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.4; transform: scale(0.85); }
+  }
+
+  .secure {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    color: #bce7e9;
+    border: 1px solid rgba(0, 240, 255, 0.28);
+    background: rgba(7, 29, 44, 0.7);
+    padding: 7px 12px;
+    border-radius: 6px;
+    white-space: nowrap;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    box-shadow: inset 0 0 12px rgba(0, 240, 255, 0.06);
+  }
+
+  .secure i {
+    color: var(--a);
+    font-style: normal;
+    font-size: 10px;
+    text-shadow: 0 0 8px var(--a);
+  }
+
+  /* Responsive Mobile Navigation Tabs */
+  .mobile-tabs {
+    display: none;
+    border-bottom: 1px solid var(--border-light);
+    background: #050d17;
+  }
+
+  .mobile-tab-btn {
+    flex: 1;
+    padding: 12px 6px;
+    background: transparent;
+    border: none;
+    color: var(--text-secondary);
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    font-weight: 600;
+    cursor: pointer;
+    border-bottom: 2px solid transparent;
+    transition: all 0.2s ease;
+  }
+
+  .mobile-tab-btn.active {
+    color: var(--c);
+    border-bottom-color: var(--c);
+    background: rgba(0, 240, 255, 0.05);
+  }
+
+  /* Main App Layout Grid */
+  .grid {
+    display: grid;
+    grid-template-columns: 240px 1fr 340px;
+    flex: 1;
+    min-height: calc(100vh - 73px);
+  }
+
+  /* Left Rail / Navigation */
+  .rail {
+    padding: 20px 14px;
+    background: rgba(6, 16, 26, 0.85);
+    backdrop-filter: blur(12px);
+    border-right: 1px solid var(--border-light);
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    overflow-y: auto;
+  }
+
+  .lab {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.16em;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    margin: 0 4px 8px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+
+  .lab::after {
+    content: "";
+    flex: 1;
+    height: 1px;
+    background: var(--border-subtle);
+  }
+
+  .rooms-list {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .room {
+    width: 100%;
+    text-align: left;
+    font: inherit;
+    font-size: 12px;
+    color: var(--text-secondary);
+    background: rgba(10, 24, 38, 0.4);
+    border: 1px solid var(--border-subtle);
+    border-radius: 8px;
+    padding: 12px 14px;
+    cursor: pointer;
+    transition: all 0.22s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .room:hover {
+    color: #ffffff;
+    background: rgba(14, 32, 50, 0.7);
+    border-color: rgba(0, 240, 255, 0.35);
+    transform: translateX(2px);
+  }
+
+  .room.active {
+    color: #ffffff;
+    border-color: var(--c);
+    background: linear-gradient(90deg, rgba(0, 240, 255, 0.12) 0%, rgba(189, 0, 255, 0.12) 100%);
+    box-shadow: inset 4px 0 0 var(--c), 0 4px 16px rgba(0, 240, 255, 0.1);
+  }
+
+  .room b {
+    display: block;
+    font-family: 'Orbitron', 'Chakra Petch', sans-serif;
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--text-primary);
+    margin-bottom: 4px;
+    letter-spacing: 0.04em;
+  }
+
+  .room.active b {
+    color: var(--c);
+    text-shadow: 0 0 10px rgba(0, 240, 255, 0.3);
+  }
+
+  .room small {
+    display: block;
+    color: var(--text-muted);
+    font-size: 10px;
+    font-family: 'JetBrains Mono', monospace;
+  }
+
+  .room.active small {
+    color: #9cd7e2;
+  }
+
+  /* TRANSLATION & LANGUAGE TOGGLE SECTION */
+  .language {
+    border-top: 1px solid var(--border-subtle);
+    padding-top: 14px;
+  }
+
+  .toggle-container {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .cyber-toggle-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: rgba(9, 23, 36, 0.7);
+    border: 1px solid rgba(0, 240, 255, 0.22);
+    border-radius: 8px;
+    padding: 8px 10px;
+  }
+
+  .toggle-label-text {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    font-weight: 600;
+    color: var(--text-secondary);
+  }
+
+  /* Pill Switch: EN <-> RU */
+  .lang-pill-switch {
+    display: flex;
+    background: #040d16;
+    border: 1px solid rgba(0, 240, 255, 0.3);
+    border-radius: 20px;
+    padding: 2px;
+    position: relative;
+    cursor: pointer;
+  }
+
+  .lang-pill-opt {
+    padding: 4px 10px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    font-weight: 700;
+    color: var(--text-muted);
+    border-radius: 16px;
+    transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+    user-select: none;
+  }
+
+  .lang-pill-opt.selected {
+    color: #020b12;
+    background: var(--c);
+    box-shadow: 0 0 10px var(--c-glow);
+  }
+
+  /* Inline Translation Visibility Switch */
+  .switch-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 6px 4px;
+  }
+
+  .cyber-switch {
+    position: relative;
+    display: inline-block;
+    width: 42px;
+    height: 22px;
+  }
+
+  .cyber-switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+  }
+
+  .switch-slider {
+    position: absolute;
+    cursor: pointer;
+    inset: 0;
+    background-color: #05101a;
+    border: 1px solid rgba(0, 240, 255, 0.3);
+    transition: .3s;
+    border-radius: 22px;
+  }
+
+  .switch-slider:before {
+    position: absolute;
+    content: "";
+    height: 14px;
+    width: 14px;
+    left: 3px;
+    bottom: 3px;
+    background-color: var(--text-muted);
+    transition: .3s;
+    border-radius: 50%;
+  }
+
+  .cyber-switch input:checked + .switch-slider {
+    background-color: rgba(0, 240, 255, 0.2);
+    border-color: var(--c);
+    box-shadow: 0 0 8px var(--c-glow);
+  }
+
+  .cyber-switch input:checked + .switch-slider:before {
+    transform: translateX(20px);
+    background-color: var(--c);
+    box-shadow: 0 0 8px var(--c);
+  }
+
+  /* Multi-participant roster section in sidebar */
+  .roster-sec {
+    border-top: 1px solid var(--border-subtle);
+    padding-top: 14px;
+  }
+
+  .roster-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 8px;
+  }
+
+  .roster-list {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+
+  .roster-item {
+    display: flex;
+    align-items: center;
+    gap: 9px;
+    padding: 6px 8px;
+    background: rgba(8, 20, 32, 0.4);
+    border: 1px solid var(--border-subtle);
+    border-radius: 6px;
+    font-size: 11px;
+  }
+
+  .roster-dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    flex: none;
+  }
+
+  .roster-avatar {
+    width: 22px;
+    height: 22px;
+    border-radius: 4px;
+    display: grid;
+    place-items: center;
+    font-family: 'Orbitron', 'Chakra Petch', sans-serif;
+    font-size: 10px;
+    font-weight: 700;
+    color: #03080e;
+    flex: none;
+  }
+
+  .roster-info {
+    flex: 1;
+    min-width: 0;
+  }
+
+  .roster-name {
+    font-weight: 600;
+    color: var(--text-primary);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    font-size: 11px;
+  }
+
+  .roster-role {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 9px;
+    color: var(--text-muted);
+  }
+
+  .btn-add-p {
+    margin-top: 6px;
+    width: 100%;
+    padding: 6px 10px;
+    background: rgba(0, 240, 255, 0.08);
+    border: 1px dashed rgba(0, 240, 255, 0.35);
+    border-radius: 6px;
+    color: var(--c);
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s ease;
+  }
+
+  .btn-add-p:hover {
+    background: rgba(0, 240, 255, 0.16);
+    border-color: var(--c);
+  }
+
+  .notice {
+    margin-top: auto;
+    padding: 12px 14px;
+    border: 1px dashed rgba(0, 240, 255, 0.22);
+    border-radius: 8px;
+    background: rgba(4, 18, 28, 0.6);
+    color: var(--text-secondary);
+    font-size: 11px;
+    line-height: 1.5;
+  }
+
+  .notice b {
+    display: block;
+    color: var(--a);
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    margin-bottom: 6px;
+  }
+
+  /* Center Chat Panel */
+  .chat {
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+    background: rgba(3, 9, 16, 0.6);
+    backdrop-filter: blur(8px);
+    position: relative;
+  }
+
+  .chathead {
+    padding: 14px 20px;
+    border-bottom: 1px solid var(--border-light);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 12px;
+    background: rgba(6, 17, 30, 0.7);
+  }
+
+  .chathead h2 {
+    font-family: 'Orbitron', 'Chakra Petch', sans-serif;
+    font-size: 16px;
+    font-weight: 700;
+    margin: 0;
+    letter-spacing: 0.08em;
+    color: var(--text-primary);
+  }
+
+  .chathead p {
+    margin: 4px 0 0;
+    font-size: 11px;
+    color: var(--text-secondary);
+  }
+
+  .chathead-actions {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .cipher {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    font-weight: 600;
+    color: var(--c);
+    border: 1px solid rgba(0, 240, 255, 0.35);
+    background: rgba(0, 240, 255, 0.08);
+    padding: 5px 10px;
+    border-radius: 20px;
+    letter-spacing: 0.06em;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    white-space: nowrap;
+  }
+
+  .messages {
+    flex: 1;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    overflow-y: auto;
+    scroll-behavior: smooth;
+  }
+
+  .messages::-webkit-scrollbar,
+  .board::-webkit-scrollbar,
+  .rail::-webkit-scrollbar {
+    width: 6px;
+  }
+  .messages::-webkit-scrollbar-thumb,
+  .board::-webkit-scrollbar-thumb,
+  .rail::-webkit-scrollbar-thumb {
+    background: rgba(0, 240, 255, 0.2);
+    border-radius: 3px;
+  }
+
+  .msg {
+    display: flex;
+    gap: 10px;
+    max-width: 84%;
+    align-items: flex-start;
+    animation: fadeInMsg 0.25s ease-out;
+  }
+
+  @keyframes fadeInMsg {
+    from { opacity: 0; transform: translateY(8px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .msg.me {
+    align-self: flex-end;
+    flex-direction: row-reverse;
+  }
+
+  .avatar {
+    display: grid;
+    place-items: center;
+    width: 32px;
+    height: 32px;
+    border-radius: 8px;
+    flex: none;
+    color: #03080e;
+    background: var(--c);
+    font-family: 'Orbitron', 'Chakra Petch', sans-serif;
+    font-size: 13px;
+    font-weight: 700;
+    box-shadow: 0 0 14px var(--c-glow);
+    font-style: normal;
+  }
+
+  .avatar.buyer-av { background: var(--c); color: #020912; box-shadow: 0 0 12px var(--c-glow); }
+  .avatar.seller-av { background: var(--v); color: #ffffff; box-shadow: 0 0 12px var(--v-glow); }
+  .avatar.escrow-av { background: var(--a); color: #020912; box-shadow: 0 0 12px var(--a-glow); }
+  .avatar.legal-av { background: var(--gold); color: #020912; box-shadow: 0 0 12px rgba(255, 183, 3, 0.4); }
+  .avatar.broker-av { background: var(--magenta); color: #ffffff; box-shadow: 0 0 12px rgba(255, 0, 85, 0.4); }
+
+  .me .avatar {
+    background: var(--v);
+    color: #ffffff;
+    box-shadow: 0 0 14px var(--v-glow);
+  }
+
+  .bubble-wrap {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+
+  .msg-meta {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 9px;
+    color: var(--text-muted);
+    padding: 0 2px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+
+  .msg-role-badge {
+    padding: 1px 6px;
+    border-radius: 10px;
+    font-size: 8px;
+    font-weight: 700;
+  }
+
+  .me .msg-meta {
+    justify-content: flex-end;
+  }
+
+  .bubble {
+    padding: 12px 16px;
+    background: rgba(11, 28, 44, 0.85);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(0, 240, 255, 0.22);
+    border-radius: 12px;
+    border-top-left-radius: 2px;
+    font-size: 13px;
+    line-height: 1.5;
+    color: var(--text-primary);
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.25);
+  }
+
+  .me .bubble {
+    background: linear-gradient(135deg, rgba(38, 17, 72, 0.9) 0%, rgba(22, 10, 48, 0.9) 100%);
+    border-color: rgba(189, 0, 255, 0.4);
+    border-top-left-radius: 12px;
+    border-top-right-radius: 2px;
+    box-shadow: 0 4px 20px rgba(189, 0, 255, 0.15);
+  }
+
+  .bubble.escrow-bubble {
+    border-color: rgba(251, 238, 0, 0.35);
+    background: rgba(15, 30, 25, 0.85);
+  }
+
+  .bubble.legal-bubble {
+    border-color: rgba(255, 183, 3, 0.35);
+    background: rgba(30, 25, 10, 0.85);
+  }
+
+  .tr {
+    display: block;
+    margin-top: 8px;
+    padding-top: 8px;
+    border-top: 1px dashed rgba(0, 240, 255, 0.2);
+    color: var(--c);
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    line-height: 1.4;
+    letter-spacing: 0.02em;
+    transition: opacity 0.2s ease, max-height 0.2s ease;
+  }
+
+  .tr.hidden-translation {
+    display: none !important;
+  }
+
+  .me .tr {
+    border-top-color: rgba(189, 0, 255, 0.25);
+    color: #c99aff;
+  }
+
+  /* Identity Selector Bar (Chat as...) */
+  .identity-bar {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 16px;
+    background: rgba(5, 13, 22, 0.9);
+    border-top: 1px solid var(--border-light);
+    overflow-x: auto;
+  }
+
+  .id-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    color: var(--text-muted);
+    font-weight: 700;
+    white-space: nowrap;
+    text-transform: uppercase;
+  }
+
+  .identity-pills {
+    display: flex;
+    gap: 6px;
+    align-items: center;
+  }
+
+  .id-pill {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    padding: 4px 9px;
+    border-radius: 14px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    font-weight: 600;
+    background: rgba(10, 25, 40, 0.5);
+    border: 1px solid var(--border-subtle);
+    color: var(--text-secondary);
+    cursor: pointer;
+    transition: all 0.2s ease;
+    white-space: nowrap;
+  }
+
+  .id-pill:hover {
+    border-color: rgba(0, 240, 255, 0.4);
+    color: #fff;
+  }
+
+  .id-pill.active {
+    border-color: var(--c);
+    background: rgba(0, 240, 255, 0.14);
+    color: #fff;
+    box-shadow: 0 0 10px rgba(0, 240, 255, 0.2);
+  }
+
+  .id-pill .id-dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+  }
+
+  /* Quick action chip bar */
+  .quick-chips {
+    display: flex;
+    gap: 8px;
+    padding: 7px 16px;
+    background: rgba(4, 11, 20, 0.7);
+    border-top: 1px solid rgba(100, 150, 180, 0.08);
+    overflow-x: auto;
+  }
+
+  .chip-btn {
+    flex: none;
+    padding: 4px 10px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    color: var(--text-secondary);
+    background: rgba(10, 25, 40, 0.6);
+    border: 1px solid rgba(0, 240, 255, 0.16);
+    border-radius: 12px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    white-space: nowrap;
+  }
+
+  .chip-btn:hover {
+    color: var(--c);
+    background: rgba(0, 240, 255, 0.1);
+    border-color: var(--c);
+  }
+
+  /* Compose Input Area */
+  .compose {
+    display: flex;
+    gap: 10px;
+    padding: 14px 18px;
+    border-top: 1px solid var(--border-light);
+    background: rgba(6, 17, 30, 0.95);
+    backdrop-filter: blur(16px);
+  }
+
+  .compose input {
+    min-width: 0;
+    flex: 1;
+    color: #ffffff;
+    background: #081726;
+    border: 1px solid rgba(0, 240, 255, 0.25);
+    border-radius: 8px;
+    padding: 12px 16px;
+    font-size: 13px;
+    outline: none;
+    transition: all 0.2s ease;
+  }
+
+  .compose input:focus {
+    border-color: var(--c);
+    background: #0b1f33;
+    box-shadow: 0 0 16px var(--c-glow);
+  }
+
+  .compose input::placeholder {
+    color: var(--text-muted);
+  }
+
+  .compose button,
+  .save {
+    font-family: 'Orbitron', 'Chakra Petch', sans-serif;
+    font-weight: 700;
+    font-size: 12px;
+    letter-spacing: 0.1em;
+    border: 1px solid #43e8e0;
+    color: #021113;
+    background: linear-gradient(135deg, #00f0ff 0%, #00bcff 100%);
+    padding: 0 20px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    text-transform: uppercase;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    box-shadow: 0 0 16px rgba(0, 240, 255, 0.25);
+  }
+
+  .compose button:hover,
+  .save:hover {
+    filter: brightness(1.15);
+    transform: translateY(-1px);
+    box-shadow: 0 0 24px var(--c-glow);
+  }
+
+  .compose button:active,
+  .save:active {
+    transform: translateY(0);
+  }
+
+  /* Right Deal Board / Contract Panel */
+  .board {
+    padding: 18px;
+    border-left: 1px solid var(--border-light);
+    background: rgba(5, 14, 24, 0.85);
+    backdrop-filter: blur(12px);
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    overflow-y: auto;
+  }
+
+  .btitle {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-bottom: 12px;
+    border-bottom: 1px solid var(--border-subtle);
+  }
+
+  .btitle h2 {
+    margin: 0;
+    font-family: 'Orbitron', 'Chakra Petch', sans-serif;
+    color: var(--a);
+    font-size: 15px;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-shadow: 0 0 10px var(--a-glow);
+  }
+
+  .btitle span {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    color: var(--text-muted);
+    background: rgba(100, 150, 180, 0.08);
+    padding: 3px 8px;
+    border-radius: 4px;
+    border: 1px solid var(--border-subtle);
+  }
+
+  .contract {
+    border: 1px solid rgba(0, 240, 255, 0.25);
+    background: linear-gradient(165deg, rgba(10, 28, 44, 0.9) 0%, rgba(14, 18, 42, 0.9) 100%);
+    border-radius: 12px;
+    padding: 16px;
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.35), inset 0 0 20px rgba(0, 240, 255, 0.04);
+  }
+
+  .contract-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 14px;
+  }
+
+  .contract h3 {
+    margin: 0;
+    color: #ffffff;
+    font-family: 'Orbitron', 'Chakra Petch', sans-serif;
+    font-size: 14px;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+  }
+
+  .contract-status-tag {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 9px;
+    font-weight: 700;
+    color: var(--a);
+    background: rgba(251, 238, 0, 0.12);
+    border: 1px solid rgba(251, 238, 0, 0.3);
+    padding: 3px 8px;
+    border-radius: 10px;
+  }
+
+  .calc-card {
+    background: rgba(3, 10, 18, 0.7);
+    border: 1px solid rgba(0, 240, 255, 0.2);
+    border-radius: 8px;
+    padding: 9px 12px;
+    margin-bottom: 12px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .calc-card span {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    color: var(--text-secondary);
+  }
+
+  .calc-card b {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 13px;
+    color: var(--a);
+    text-shadow: 0 0 8px var(--a-glow);
+  }
+
+  .field {
+    display: block;
+    margin: 10px 0;
+  }
+
+  .field span {
+    display: flex;
+    justify-content: space-between;
+    color: var(--text-secondary);
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    font-weight: 600;
+    margin-bottom: 5px;
+    letter-spacing: 0.08em;
+  }
+
+  .field input,
+  .field textarea {
+    width: 100%;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px;
+    color: #e0fcff;
+    background: #05101a;
+    border: 1px solid rgba(0, 240, 255, 0.2);
+    border-radius: 6px;
+    padding: 8px 10px;
+    outline: none;
+    transition: all 0.2s ease;
+  }
+
+  .field input:focus,
+  .field textarea:focus {
+    border-color: var(--c);
+    box-shadow: 0 0 14px var(--c-glow);
+    background: #071726;
+  }
+
+  .field textarea {
+    height: 76px;
+    resize: vertical;
+    line-height: 1.4;
+  }
+
+  .contract-hash {
+    margin: 10px 0;
+    padding: 8px 10px;
+    background: rgba(0, 0, 0, 0.4);
+    border: 1px solid rgba(0, 240, 255, 0.12);
+    border-radius: 6px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 9px;
+    color: var(--text-muted);
+    word-break: break-all;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+
+  .contract-hash span {
+    color: var(--c);
+  }
+
+  .save {
+    width: 100%;
+    height: 40px;
+    margin-top: 8px;
+    font-size: 12px;
+  }
+
+  .saved {
+    min-height: 18px;
+    margin: 8px 0 0;
+    color: var(--a);
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    font-weight: 600;
+    text-align: center;
+    letter-spacing: 0.08em;
+  }
+
+  .hint {
+    margin: 0;
+    font-size: 11px;
+    line-height: 1.5;
+    color: var(--text-secondary);
+    padding: 12px;
+    border-radius: 8px;
+    background: rgba(10, 24, 38, 0.4);
+    border: 1px solid var(--border-subtle);
+  }
+
+  .hint b {
+    color: var(--c);
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+  }
+
+  /* Modal for Adding New Participant */
+  .modal-overlay {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 4, 10, 0.85);
+    backdrop-filter: blur(8px);
+    z-index: 100;
+    place-items: center;
+    padding: 20px;
+  }
+
+  .modal-overlay.open {
+    display: grid;
+  }
+
+  .modal-box {
+    background: #081726;
+    border: 1px solid rgba(0, 240, 255, 0.4);
+    box-shadow: 0 0 35px rgba(0, 240, 255, 0.2);
+    border-radius: 12px;
+    width: 100%;
+    max-width: 380px;
+    padding: 20px;
+  }
+
+  .modal-title {
+    margin: 0 0 14px;
+    font-family: 'Orbitron', 'Chakra Petch', sans-serif;
+    color: var(--c);
+    font-size: 15px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+  }
+
+  .modal-form label {
+    display: block;
+    margin-bottom: 12px;
+  }
+
+  .modal-form label span {
+    display: block;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    color: var(--text-secondary);
+    margin-bottom: 5px;
+  }
+
+  .modal-form input,
+  .modal-form select {
+    width: 100%;
+    background: #040c14;
+    border: 1px solid rgba(0, 240, 255, 0.25);
+    color: #fff;
+    padding: 8px 10px;
+    border-radius: 6px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px;
+    outline: none;
+  }
+
+  .modal-btns {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+    margin-top: 18px;
+  }
+
+  .modal-btn-cancel {
+    background: transparent;
+    border: 1px solid rgba(100, 150, 180, 0.3);
+    color: var(--text-secondary);
+    padding: 8px 14px;
+    border-radius: 6px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    cursor: pointer;
+  }
+
+  .modal-btn-submit {
+    background: var(--c);
+    border: none;
+    color: #03080e;
+    font-family: 'Orbitron', 'Chakra Petch', sans-serif;
+    font-weight: 700;
+    padding: 8px 16px;
+    border-radius: 6px;
+    cursor: pointer;
+  }
+
+  /* Media Queries */
+  @media (max-width: 1080px) {
+    .grid {
+      grid-template-columns: 210px 1fr 300px;
+    }
+  }
+
+  @media (max-width: 860px) {
+    .mobile-tabs {
+      display: flex;
+    }
+    .grid {
+      display: block;
+    }
+    .rail, .chat, .board {
+      display: none;
+    }
+    .rail.active-tab, .chat.active-tab, .board.active-tab {
+      display: flex;
+      min-height: calc(100vh - 120px);
+    }
+    .board {
+      border-left: none;
+    }
+  }
+
+  @media (max-width: 580px) {
+    .bar {
+      padding: 12px 16px;
+    }
+    h1 {
+      font-size: 15px;
+    }
+    .parties-pill {
+      display: none;
+    }
+    .secure {
+      font-size: 9px;
+      padding: 5px 8px;
+    }
+  }
+
+  /* ===== NIKOLAS SEGURADO brand lockup (matches the is-today-monday site) ===== */
+  .startup-banner {
+    position: relative;
+    z-index: 30;
+    width: 100%;
+    padding: 10px 16px;
+    text-align: center;
+    font-family: 'Orbitron', 'Chakra Petch', sans-serif;
+    font-size: 10px;
+    font-weight: 800;
+    letter-spacing: 0.35em;
+    text-transform: uppercase;
+    color: #fbee00;
+    background: rgba(251, 238, 0, 0.08);
+    border-bottom: 1px solid rgba(251, 238, 0, 0.4);
+    text-shadow: 0 0 8px rgba(251, 238, 0, 0.55);
+  }
+
+  .site-footer {
+    position: relative;
+    z-index: 20;
+    padding: 22px 16px 26px;
+    text-align: center;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.08em;
+    color: #536d80;
+    background: rgba(6, 17, 30, 0.9);
+    border-top: 1px solid var(--border-light);
+  }
+
+  .site-footer .legal-badge {
+    display: inline-flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 10px;
+    padding: 8px 14px;
+    border: 1px solid rgba(251, 238, 0, 0.3);
+    border-radius: 10px;
+    background: rgba(251, 238, 0, 0.05);
+    font-size: 10px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: rgba(251, 238, 0, 0.9);
+  }
+
+  .site-footer .legal-badge .sep { color: rgba(251, 238, 0, 0.4); }
+
+  /* Cyan accents carried over from the main site */
+  .bar {
+    border-bottom: 1px solid rgba(0, 240, 255, 0.35);
+    box-shadow: 0 0 22px rgba(0, 240, 255, 0.12);
+  }
+  .rail, .board { box-shadow: inset 0 2px 0 rgba(0, 240, 255, 0.28); }
+  .brand h1 { text-shadow: 0 0 14px rgba(0, 240, 255, 0.5); }
+  .logo {
+    box-shadow: 0 0 18px rgba(0, 240, 255, 0.45), inset 0 0 12px rgba(0, 240, 255, 0.25);
+  }
+</style>
+
+<header class="bar">
+  <div class="brand">
+    <div class="logo">⌬</div>
+    <div>
+      <h1>BILINGUAL BRIDGE</h1>
+      <p class="by" id="by-text">Created &amp; owned by <b>NIKOLAS</b></p>
+    </div>
+  </div>
+  <div class="header-meta">
+    <div class="parties-pill"><span class="pulse-dot"></span> <span id="party-count-pill">4 PARTIES IN ROOM</span></div>
+    <div class="secure" id="secure-badge"><i>●</i> LOCAL-ONLY CHANNEL · NO SERVER · NO LOGS</div>
+  </div>
+</header>
+
+<nav class="mobile-tabs" aria-label="Mobile navigation">
+  <button class="mobile-tab-btn" data-target="rail">ROOMS (2)</button>
+  <button class="mobile-tab-btn active" data-target="chat">DEAL CHAT</button>
+  <button class="mobile-tab-btn" data-target="board">CONTRACT</button>
+</nav>
+
+<div class="grid">
+  <!-- Left Rail -->
+  <aside class="rail active-tab" id="tab-rail">
+    <div>
+      <p class="lab" id="lab-rooms">DEAL ROOMS</p>
+      <div class="rooms-list">
+        <button class="room active" type="button" data-room="Crypto"><b>⌁ Crypto</b><small>buyer ↔ seller</small></button>
+        <button class="room" type="button" data-room="Bank protocols"><b>▣ Bank protocols</b><small>private negotiation</small></button>
+      </div>
+    </div>
+
+    <!-- TRANSLATION & LANGUAGE TOGGLE SECTION -->
+    <div class="language">
+      <p class="lab" id="lab-lang">TRANSLATION &amp; LANGUAGE</p>
+      <div class="toggle-container">
+        <!-- Interactive Pill Toggle for UI Language -->
+        <div class="cyber-toggle-wrapper">
+          <span class="toggle-label-text" id="label-ui-lang">UI LANGUAGE</span>
+          <div class="lang-pill-switch" id="lang-toggle-btn" role="switch" aria-label="Toggle language English or Russian">
+            <span class="lang-pill-opt selected" data-val="English">EN</span>
+            <span class="lang-pill-opt" data-val="Русский">RU</span>
+          </div>
+        </div>
+
+        <!-- Hidden select to keep full backward-compatibility with scripts expecting #lang -->
+        <select id="lang" aria-label="Interface language" style="display:none;">
+          <option value="English" selected>English</option>
+          <option value="Русский">Русский</option>
+        </select>
+
+        <!-- Inline Translation Visibility Switch -->
+        <div class="cyber-toggle-wrapper switch-row">
+          <span class="toggle-label-text" id="label-subtitles">SHOW BILINGUAL SUBTITLES</span>
+          <label class="cyber-switch">
+            <input type="checkbox" id="translation-visibility-toggle" checked>
+            <span class="switch-slider"></span>
+          </label>
+        </div>
+      </div>
+    </div>
+
+    <!-- MULTI-PARTY PARTICIPANTS ROSTER -->
+    <div class="roster-sec">
+      <div class="roster-header">
+        <p class="lab" id="lab-roster" style="margin:0;">ROOM PARTICIPANTS (<span id="roster-count">4</span>)</p>
+      </div>
+      <div class="roster-list" id="roster-list">
+        <!-- Populated via script -->
+      </div>
+      <button type="button" class="btn-add-p" id="open-add-p-btn">+ ADD PARTICIPANT</button>
+    </div>
+
+    <div class="notice">
+      <b id="notice-title">◈ ZERO TRACE MODE</b>
+      <span id="notice-desc">This terminal keeps every message strictly in memory inside this browser session. Multi-party messages are relayed client-side without any server trace or database logs.</span>
+    </div>
+  </aside>
+
+  <!-- Center Chat Area -->
+  <section class="chat active-tab" id="tab-chat">
+    <div class="chathead">
+      <div>
+        <h2 id="roomname">Crypto</h2>
+        <p id="subtitle">private buyer–seller negotiation</p>
+      </div>
+      <div class="chathead-actions">
+        <div class="cipher" id="cipher-badge">◉ E2E / LOCAL</div>
+      </div>
+    </div>
+
+    <div class="messages" id="messages">
+      <!-- Buyer message -->
+      <div class="msg" data-sender="buyer" data-en="I want to buy 2 BTC. Can we start with a small test?" data-ru="Я хочу купить 2 BTC. Можем начать с небольшого теста?" data-role-en="COUNTERPARTY" data-role-ru="КОНТРАГЕНТ" data-name-en="BUYER (INSTITUTIONAL)" data-name-ru="ПОКУПАТЕЛЬ">
+        <i class="avatar buyer-av">B</i>
+        <div class="bubble-wrap">
+          <div class="msg-meta">
+            <span class="msg-name">BUYER (INSTITUTIONAL)</span>
+            <span class="msg-role-badge" style="background:rgba(0,240,255,0.15);color:var(--c);">COUNTERPARTY</span>
+            <span class="msg-time">· 10:41 AM</span>
+          </div>
+          <div class="bubble">
+            <span class="bubble-text">I want to buy 2 BTC. Can we start with a small test?</span>
+            <span class="tr">RU: Я хочу купить 2 BTC. Можем начать с небольшого теста?</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Seller (You) message -->
+      <div class="msg me" data-sender="seller" data-en="Yes. Put the proposed price and procedure on the board." data-ru="Да. Укажите цену и процедуру на доске." data-role-en="SELLER (YOU)" data-role-ru="ПРОДАВЕЦ (ВЫ)" data-name-en="OTC DESK" data-name-ru="OTC ДЕСК">
+        <i class="avatar seller-av">S</i>
+        <div class="bubble-wrap">
+          <div class="msg-meta">
+            <span class="msg-time">10:42 AM · </span>
+            <span class="msg-role-badge" style="background:rgba(153,69,255,0.2);color:#c99aff;">SELLER (YOU)</span>
+            <span class="msg-name">OTC DESK</span>
+          </div>
+          <div class="bubble">
+            <span class="bubble-text">Yes. Put the proposed price and procedure on the board.</span>
+            <span class="tr">EN: Да. Укажите цену и процедуру на доске.</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Escrow Arbiter message -->
+      <div class="msg" data-sender="escrow" data-en="⚡ Escrow multi-sig vault #774-BTC initialized. Awaiting tranche test verification before settlement." data-ru="⚡ Мультисиг-хранилище #774-BTC инициализировано. Ожидается проверка тестового транша перед расчетом." data-role-en="CUSTODIAN" data-role-ru="ХРАНИТЕЛЬ" data-name-en="ESCROW ARBITER (BITGO)" data-name-ru="ЭСКРОУ-АРБИТР (BITGO)">
+        <i class="avatar escrow-av">E</i>
+        <div class="bubble-wrap">
+          <div class="msg-meta">
+            <span class="msg-name">ESCROW ARBITER (BITGO)</span>
+            <span class="msg-role-badge" style="background:rgba(204,255,0,0.15);color:var(--a);">CUSTODIAN</span>
+            <span class="msg-time">· 10:42 AM</span>
+          </div>
+          <div class="bubble escrow-bubble">
+            <span class="bubble-text">⚡ Escrow multi-sig vault #774-BTC initialized. Awaiting tranche test verification before settlement.</span>
+            <span class="tr">RU: Мультисиг-хранилище #774-BTC инициализировано. Ожидается проверка тестового транша перед расчетом.</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Legal / Notary message -->
+      <div class="msg" data-sender="legal" data-en="✓ Proof of Funds & AML clearing confirmed for both principals. Agreement terms are compliant." data-ru="✓ Подтверждение средств и проверка AML пройдены для обеих сторон. Условия соглашения соответствуют протоколу." data-role-en="NOTARY" data-role-ru="НОТАРИУС" data-name-en="COMPLIANCE & LEGAL" data-name-ru="КОМПЛАЕНС И ЮРИСТ">
+        <i class="avatar legal-av">L</i>
+        <div class="bubble-wrap">
+          <div class="msg-meta">
+            <span class="msg-name">COMPLIANCE &amp; LEGAL</span>
+            <span class="msg-role-badge" style="background:rgba(255,183,3,0.15);color:var(--gold);">NOTARY</span>
+            <span class="msg-time">· 10:43 AM</span>
+          </div>
+          <div class="bubble legal-bubble">
+            <span class="bubble-text">✓ Proof of Funds & AML clearing confirmed for both principals. Agreement terms are compliant.</span>
+            <span class="tr">RU: Подтверждение средств и проверка AML пройдены для обеих сторон. Условия соглашения соответствуют протоколу.</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Buyer follow-up -->
+      <div class="msg" data-sender="buyer" data-en="Done — please review the smart contract terms." data-ru="Готово — пожалуйста, проверьте условия смарт-контракта." data-role-en="COUNTERPARTY" data-role-ru="КОНТРАГЕНТ" data-name-en="BUYER (INSTITUTIONAL)" data-name-ru="ПОКУПАТЕЛЬ">
+        <i class="avatar buyer-av">B</i>
+        <div class="bubble-wrap">
+          <div class="msg-meta">
+            <span class="msg-name">BUYER (INSTITUTIONAL)</span>
+            <span class="msg-role-badge" style="background:rgba(0,240,255,0.15);color:var(--c);">COUNTERPARTY</span>
+            <span class="msg-time">· 10:43 AM</span>
+          </div>
+          <div class="bubble">
+            <span class="bubble-text">Done — please review the smart contract terms.</span>
+            <span class="tr">RU: Готово — пожалуйста, проверьте условия смарт-контракта.</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Active Identity Selector (Speak as...) -->
+    <div class="identity-bar">
+      <span class="id-label" id="chat-as-label">CHAT AS:</span>
+      <div class="identity-pills" id="identity-pills">
+        <!-- populated dynamically -->
+      </div>
+    </div>
+
+    <!-- Quick negotiation chips -->
+    <div class="quick-chips" id="quick-chips-container">
+      <button type="button" class="chip-btn" data-key="price" data-text="Agree on price. Ready for the test transfer.">Agree on Price</button>
+      <button type="button" class="chip-btn" data-key="addr" data-text="Please confirm your receiving wallet address.">Request Address</button>
+      <button type="button" class="chip-btn" data-key="test" data-text="0.01 BTC test sent. Hash posted.">Test Sent</button>
+      <button type="button" class="chip-btn" data-key="approve" data-text="Terms approved. Proceeding to main settlement.">Approve Terms</button>
+    </div>
+
+    <div class="compose">
+      <input id="message" aria-label="Secure message" placeholder="Type a secure message… (Press Enter to send)">
+      <button type="button" id="send">SEND</button>
+    </div>
+  </section>
+
+  <!-- Right Deal Board / Contract -->
+  <aside class="board active-tab" id="tab-board">
+    <div class="btitle">
+      <h2 id="btitle-proc">PROCEDURE</h2>
+      <span id="btitle-ver">DEAL BOARD v2</span>
+    </div>
+
+    <div class="contract">
+      <div class="contract-header">
+        <h3 id="contract-h3">⌁ SMART CONTRACT</h3>
+        <span class="contract-status-tag" id="contract-status">MULTI-SIG ESCROW</span>
+      </div>
+
+      <div class="calc-card">
+        <span id="est-label">ESTIMATED SETTLEMENT</span>
+        <b id="est-total">209,000 USDT</b>
+      </div>
+
+      <label class="field">
+        <span id="lbl-price">PRICE (USDT)</span>
+        <input id="price" value="104,500 USDT / BTC">
+      </label>
+
+      <label class="field">
+        <span id="lbl-amount">AMOUNT (ASSET)</span>
+        <input id="amount" value="2.00 BTC">
+      </label>
+
+      <label class="field">
+        <span id="lbl-test">TEST TRANCHE</span>
+        <input id="test" value="0.01 BTC first transfer">
+      </label>
+
+      <label class="field">
+        <span id="lbl-procedure">PROCEDURE PROTOCOL</span>
+        <textarea id="procedure">Buyer confirms price → Seller sends test → Buyer confirms receipt → Main transfer → Both save agreement.</textarea>
+      </label>
+
+      <div class="contract-hash" id="deal-hash">
+        SHA-256: <span>9e8a71d0e...4b82fc1a</span>
+      </div>
+
+      <button type="button" class="save" id="save">↓ SAVE AS .TXT</button>
+      <div class="saved" id="saved" aria-live="polite"></div>
+    </div>
+
+    <p class="hint" id="hint-text">
+      <b>Flow:</b> agree on price, amount, test and procedure; record the terms, then save a local copy.
+    </p>
+  </aside>
+</div>
+
+<!-- Add Participant Modal -->
+<div class="modal-overlay" id="add-p-modal">
+  <div class="modal-box">
+    <h3 class="modal-title" id="modal-title">+ ADD ROOM PARTICIPANT</h3>
+    <form class="modal-form" id="add-p-form">
+      <label>
+        <span id="lbl-modal-name">NAME / HANDLE</span>
+        <input type="text" id="new-p-name" placeholder="e.g. Elena (Auditor)" required>
+      </label>
+      <label>
+        <span id="lbl-modal-role">ROLE TITLE</span>
+        <input type="text" id="new-p-role" placeholder="e.g. Forensic Auditor" required>
+      </label>
+      <label>
+        <span id="lbl-modal-color">COLOR SCHEME</span>
+        <select id="new-p-color">
+          <option value="#ff0055">Magenta (#ff0055) - Broker / Trader</option>
+          <option value="#ffb703">Gold (#ffb703) - Legal / Notary</option>
+          <option value="#fbee00">Lime (#fbee00) - Escrow Custodian</option>
+          <option value="#00f0ff">Cyan (#00f0ff) - Buyer Counterparty</option>
+          <option value="#bd00ff">Violet (#bd00ff) - Seller Principal</option>
+        </select>
+      </label>
+      <div class="modal-btns">
+        <button type="button" class="modal-btn-cancel" id="close-add-p-btn">Cancel</button>
+        <button type="submit" class="modal-btn-submit" id="submit-add-p-btn">Add to Deal Room</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<script>
+(function(){
+  const r = document.getElementById('bridge'),
+        n = r.querySelector('#roomname'),
+        s = r.querySelector('#subtitle'),
+        l = r.querySelector('#lang'),
+        langToggleBtn = r.querySelector('#lang-toggle-btn'),
+        transVisToggle = r.querySelector('#translation-visibility-toggle'),
+        i = r.querySelector('#message'),
+        m = r.querySelector('#messages'),
+        sendBtn = r.querySelector('#send'),
+        saveBtn = r.querySelector('#save'),
+        savedStatus = r.querySelector('#saved'),
+        priceInp = r.querySelector('#price'),
+        amountInp = r.querySelector('#amount'),
+        testInp = r.querySelector('#test'),
+        procInp = r.querySelector('#procedure'),
+        estTotal = r.querySelector('#est-total'),
+        dealHash = r.querySelector('#deal-hash'),
+        rosterList = r.querySelector('#roster-list'),
+        rosterCount = r.querySelector('#roster-count'),
+        partyCountPill = r.querySelector('#party-count-pill'),
+        idPillsContainer = r.querySelector('#identity-pills'),
+        addPModal = r.querySelector('#add-p-modal'),
+        openAddPBtn = r.querySelector('#open-add-p-btn'),
+        closeAddPBtn = r.querySelector('#close-add-p-btn'),
+        submitAddPBtn = r.querySelector('#submit-add-p-btn'),
+        addPForm = r.querySelector('#add-p-form');
+
+  // Participants State with full bilingual definitions
+  let participants = [
+    { id: 'seller', nameEn: 'Seller (You)', nameRu: 'Продавец (Вы)', short: 'S', roleEn: 'OTC Desk', roleRu: 'OTC Деск', color: '#bd00ff', isMe: true },
+    { id: 'buyer', nameEn: 'Buyer', nameRu: 'Покупатель', short: 'B', roleEn: 'Counterparty', roleRu: 'Контрагент', color: '#00f0ff', isMe: false },
+    { id: 'escrow', nameEn: 'Escrow Arbiter', nameRu: 'Эскроу-арбитр', short: 'E', roleEn: 'Custodian (BitGo)', roleRu: 'Хранитель (BitGo)', color: '#fbee00', isMe: false },
+    { id: 'legal', nameEn: 'Legal / Notary', nameRu: 'Юрист / Нотариус', short: 'L', roleEn: 'Compliance Officer', roleRu: 'Офицер комплаенса', color: '#ffb703', isMe: false }
+  ];
+
+  let currentSpeakerId = 'seller';
+
+  // Render Participants in Roster & Identity Bar
+  function renderParticipants() {
+    const isRu = l.value.includes('Русский');
+    rosterList.innerHTML = '';
+    idPillsContainer.innerHTML = '';
+
+    participants.forEach(p => {
+      const pName = isRu ? (p.nameRu || p.nameEn) : p.nameEn;
+      const pRole = isRu ? (p.roleRu || p.roleEn) : p.roleEn;
+
+      // Sidebar Roster Item
+      const rItem = document.createElement('div');
+      rItem.className = 'roster-item';
+      rItem.innerHTML = `
+        <span class="roster-dot" style="background:${p.color};box-shadow:0 0 6px ${p.color};"></span>
+        <div class="roster-avatar" style="background:${p.color};color:${p.color === '#bd00ff' || p.color === '#ff0055' ? '#fff' : '#03080e'};">${p.short}</div>
+        <div class="roster-info">
+          <div class="roster-name">${pName}</div>
+          <div class="roster-role">${pRole}</div>
+        </div>
+      `;
+      rosterList.appendChild(rItem);
+
+      // Identity Pill in Chat Composer
+      const pill = document.createElement('button');
+      pill.type = 'button';
+      pill.className = 'id-pill' + (p.id === currentSpeakerId ? ' active' : '');
+      pill.innerHTML = `
+        <span class="id-dot" style="background:${p.color};box-shadow:0 0 6px ${p.color};"></span>
+        <span>${p.short}: ${pName}</span>
+      `;
+      pill.addEventListener('click', () => {
+        currentSpeakerId = p.id;
+        r.querySelectorAll('.id-pill').forEach(x => x.classList.remove('active'));
+        pill.classList.add('active');
+        i.focus();
+      });
+      idPillsContainer.appendChild(pill);
+    });
+
+    const total = participants.length;
+    rosterCount.textContent = total;
+    partyCountPill.textContent = isRu ? (total + ' УЧАСТНИКОВ В СЕССИИ') : (total + ' PARTIES IN ROOM');
+  }
+
+  // Add Participant Modal Handlers
+  openAddPBtn.addEventListener('click', () => addPModal.classList.add('open'));
+  closeAddPBtn.addEventListener('click', () => addPModal.classList.remove('open'));
+  addPForm.addEventListener('submit', (e) => {
+    e.preventDefault();
+    const name = r.querySelector('#new-p-name').value.trim();
+    const role = r.querySelector('#new-p-role').value.trim();
+    const color = r.querySelector('#new-p-color').value;
+    if (!name) return;
+
+    const newId = 'user_' + Date.now();
+    const shortLetter = name.charAt(0).toUpperCase();
+    participants.push({
+      id: newId,
+      nameEn: name,
+      nameRu: name,
+      short: shortLetter,
+      roleEn: role || 'Observer',
+      roleRu: role || 'Наблюдатель',
+      color: color,
+      isMe: false
+    });
+
+    currentSpeakerId = newId;
+    renderParticipants();
+    addPModal.classList.remove('open');
+    addPForm.reset();
+
+    // Announce in chat
+    const isRu = l.value.includes('Русский');
+    const sysMsg = document.createElement('div');
+    sysMsg.style.cssText = 'text-align:center;font-family:"JetBrains Mono",monospace;font-size:10px;color:var(--text-muted);margin:4px 0;';
+    sysMsg.innerHTML = isRu
+      ? `◈ <span style="color:${color};font-weight:700;">${name}</span> присоединился к сделке как ${role || 'Наблюдатель'}`
+      : `◈ <span style="color:${color};font-weight:700;">${name}</span> joined the deal room as ${role || 'Observer'}`;
+    m.appendChild(sysMsg);
+    m.scrollTop = m.scrollHeight;
+  });
+
+  // Deal Rooms switching
+  r.querySelectorAll('.room').forEach(b => {
+    b.addEventListener('click', () => {
+      r.querySelectorAll('.room').forEach(x => x.classList.remove('active'));
+      b.classList.add('active');
+      const isRu = l.value.includes('Русский');
+      const isCrypto = b.dataset.room === 'Crypto';
+      n.textContent = isCrypto ? (isRu ? 'Криптовалюта' : 'Crypto') : (isRu ? 'Банковские протоколы' : 'Bank protocols');
+      if (isCrypto) {
+        s.textContent = isRu ? 'закрытые переговоры покупателя и продавца' : 'private buyer–seller negotiation';
+        priceInp.value = '104,500 USDT / BTC';
+        amountInp.value = '2.00 BTC';
+        testInp.value = isRu ? '0.01 BTC тестовый перевод' : '0.01 BTC first transfer';
+      } else {
+        s.textContent = isRu ? 'обсуждение банковских расчетов' : 'bank settlement discussion';
+        priceInp.value = '1.00 USD / EUR';
+        amountInp.value = '500,000 USD';
+        testInp.value = isRu ? '10,000 USD тестовый перевод MT103' : '10,000 USD MT103 test wire';
+      }
+      updateCalculations();
+      updateHash();
+      if (window.innerWidth <= 860) {
+        switchMobileTab('chat');
+      }
+    });
+  });
+
+  // Comprehensive i18n Dictionary for complete interface re-changing
+  const i18n = {
+    en: {
+      byText: 'Created & owned by <b>NIKOLAS</b>',
+      secure: '<i>●</i> LOCAL-ONLY CHANNEL · NO SERVER · NO LOGS',
+      labRooms: 'DEAL ROOMS',
+      roomCrypto: '<b>⌁ Crypto</b><small>buyer ↔ seller</small>',
+      roomBank: '<b>▣ Bank protocols</b><small>private negotiation</small>',
+      labLang: 'TRANSLATION & LANGUAGE',
+      labelUiLang: 'UI LANGUAGE',
+      labelSubtitles: 'SHOW BILINGUAL SUBTITLES',
+      labRoster: 'ROOM PARTICIPANTS',
+      btnAddP: '+ ADD PARTICIPANT',
+      noticeTitle: '◈ ZERO TRACE MODE',
+      noticeDesc: 'This terminal keeps every message strictly in memory inside this browser session. Multi-party messages are relayed client-side without any server trace or database logs.',
+      subCrypto: 'private buyer–seller negotiation',
+      subBank: 'bank settlement discussion',
+      cipher: '◉ E2E / LOCAL',
+      chatAs: 'CHAT AS:',
+      chips: {
+        price: { label: 'Agree on Price', text: 'Agree on price. Ready for the test transfer.' },
+        addr: { label: 'Request Address', text: 'Please confirm your receiving wallet address.' },
+        test: { label: 'Test Sent', text: '0.01 BTC test sent. Hash posted.' },
+        approve: { label: 'Approve Terms', text: 'Terms approved. Proceeding to main settlement.' }
+      },
+      placeholder: 'Type a secure message… (Press Enter to send)',
+      sendBtn: 'SEND',
+      btitleProc: 'PROCEDURE',
+      btitleVer: 'DEAL BOARD v2',
+      contractH3: '⌁ SMART CONTRACT',
+      contractStatus: 'MULTI-SIG ESCROW',
+      estLabel: 'ESTIMATED SETTLEMENT',
+      lblPrice: 'PRICE (USDT)',
+      lblAmount: 'AMOUNT (ASSET)',
+      lblTest: 'TEST TRANCHE',
+      lblProc: 'PROCEDURE PROTOCOL',
+      defaultProc: 'Buyer confirms price → Seller sends test → Buyer confirms receipt → Main transfer → Both save agreement.',
+      saveBtn: '↓ SAVE AS .TXT',
+      savedText: '✓ LOCAL TXT COPY SAVED',
+      hintText: '<b>Flow:</b> agree on price, amount, test and procedure; record the terms, then save a local copy.',
+      tabRail: 'ROOMS (2)',
+      tabChat: 'DEAL CHAT',
+      tabBoard: 'CONTRACT',
+      modalTitle: '+ ADD ROOM PARTICIPANT',
+      lblModalName: 'NAME / HANDLE',
+      lblModalRole: 'ROLE TITLE',
+      lblModalColor: 'COLOR SCHEME',
+      modalCancel: 'Cancel',
+      modalSubmit: 'Add to Deal Room'
+    },
+    ru: {
+      byText: 'Создано и принадлежит <b>NIKOLAS</b>',
+      secure: '<i>●</i> ЛОКАЛЬНЫЙ КАНАЛ · БЕЗ СЕРВЕРА · БЕЗ ЛОГОВ',
+      labRooms: 'КОМНАТЫ СДЕЛОК',
+      roomCrypto: '<b>⌁ Криптовалюта</b><small>покупатель ↔ продавец</small>',
+      roomBank: '<b>▣ Банковские протоколы</b><small>закрытые переговоры</small>',
+      labLang: 'ПЕРЕВОД И ЯЗЫК',
+      labelUiLang: 'ЯЗЫК ИНТЕРФЕЙСА',
+      labelSubtitles: 'СУБТИТРЫ ПЕРЕВОДА',
+      labRoster: 'УЧАСТНИКИ КОМНАТЫ',
+      btnAddP: '+ ДОБАВИТЬ УЧАСТНИКА',
+      noticeTitle: '◈ РЕЖИМ БЕЗ СЛЕДОВ',
+      noticeDesc: 'Терминал хранит все сообщения исключительно в оперативной памяти браузера. Сообщения передаются на стороне клиента без логов и серверного следа.',
+      subCrypto: 'закрытые переговоры покупателя и продавца',
+      subBank: 'обсуждение банковских расчетов',
+      cipher: '◉ E2E / ЛОКАЛЬНО',
+      chatAs: 'ОТ ИМЕНИ:',
+      chips: {
+        price: { label: 'Согласен с ценой', text: 'Согласен с ценой. Готов к тестовому переводу.' },
+        addr: { label: 'Запросить адрес', text: 'Пожалуйста, подтвердите адрес кошелька для получения.' },
+        test: { label: 'Тест отправлен', text: 'Тест 0.01 BTC отправлен. Хеш опубликован.' },
+        approve: { label: 'Условия одобрены', text: 'Условия одобрены. Переходим к основному расчету.' }
+      },
+      placeholder: 'Введите защищённое сообщение… (Enter для отправки)',
+      sendBtn: 'ОТПРАВИТЬ',
+      btitleProc: 'ПРОЦЕДУРА',
+      btitleVer: 'ДОСКА СДЕЛКИ v2',
+      contractH3: '⌁ СМАРТ-КОНТРАКТ',
+      contractStatus: 'МУЛЬТИСИГ ЭСКРОУ',
+      estLabel: 'РАСЧЕТНАЯ СУММА',
+      lblPrice: 'ЦЕНА (USDT)',
+      lblAmount: 'ОБЪЕМ (АКТИВ)',
+      lblTest: 'ТЕСТОВЫЙ ТРАНШ',
+      lblProc: 'ПРОТОКОЛ ПРОЦЕДУРЫ',
+      defaultProc: 'Покупатель подтверждает цену → Продавец отправляет тест → Покупатель подтверждает получение → Основной перевод → Обе стороны сохраняют соглашение.',
+      saveBtn: '↓ СОХРАНИТЬ В .TXT',
+      savedText: '✓ ЛОКАЛЬНАЯ КОПИЯ СОХРАНЕНА',
+      hintText: '<b>Порядок действий:</b> согласуйте цену, объем, тест и процедуру; зафиксируйте условия, затем сохраните копию.',
+      tabRail: 'КОМНАТЫ (2)',
+      tabChat: 'ЧАТ СДЕЛКИ',
+      tabBoard: 'КОНТРАКТ',
+      modalTitle: '+ ДОБАВИТЬ УЧАСТНИКА',
+      lblModalName: 'ИМЯ / ПОЗЫВНОЙ',
+      lblModalRole: 'ДОЛЖНОСТЬ / РОЛЬ',
+      lblModalColor: 'ЦВЕТОВАЯ СХЕМА',
+      modalCancel: 'Отмена',
+      modalSubmit: 'Добавить в сделку'
+    }
+  };
+
+  // Toggle Language Pill Switch & Full UI Re-change
+  function setLanguage(val) {
+    l.value = val;
+    langToggleBtn.querySelectorAll('.lang-pill-opt').forEach(opt => {
+      opt.classList.toggle('selected', opt.dataset.val === val);
+    });
+
+    const isRu = val.includes('Русский');
+    const d = isRu ? i18n.ru : i18n.en;
+
+    // Header & Badges
+    const byEl = r.querySelector('#by-text');
+    if (byEl) byEl.innerHTML = d.byText;
+
+    const secEl = r.querySelector('#secure-badge');
+    if (secEl) secEl.innerHTML = d.secure;
+
+    // Left Rail
+    const labR = r.querySelector('#lab-rooms');
+    if (labR) labR.textContent = d.labRooms;
+
+    const rCrypto = r.querySelector('.room[data-room="Crypto"]');
+    if (rCrypto) rCrypto.innerHTML = d.roomCrypto;
+
+    const rBank = r.querySelector('.room[data-room="Bank protocols"]');
+    if (rBank) rBank.innerHTML = d.roomBank;
+
+    const labL = r.querySelector('#lab-lang');
+    if (labL) labL.textContent = d.labLang;
+
+    const lblUiL = r.querySelector('#label-ui-lang');
+    if (lblUiL) lblUiL.textContent = d.labelUiLang;
+
+    const lblSub = r.querySelector('#label-subtitles');
+    if (lblSub) lblSub.textContent = d.labelSubtitles;
+
+    const labRos = r.querySelector('#lab-roster');
+    if (labRos) labRos.innerHTML = d.labRoster + ' (<span id="roster-count">' + participants.length + '</span>)';
+
+    if (openAddPBtn) openAddPBtn.textContent = d.btnAddP;
+
+    const notTitle = r.querySelector('#notice-title');
+    if (notTitle) notTitle.textContent = d.noticeTitle;
+
+    const notDesc = r.querySelector('#notice-desc');
+    if (notDesc) notDesc.textContent = d.noticeDesc;
+
+    // Center Chathead
+    const activeRoom = r.querySelector('.room.active');
+    const isCryptoActive = !activeRoom || activeRoom.dataset.room === 'Crypto';
+    n.textContent = isCryptoActive ? (isRu ? 'Криптовалюта' : 'Crypto') : (isRu ? 'Банковские протоколы' : 'Bank protocols');
+    s.textContent = isCryptoActive ? d.subCrypto : d.subBank;
+
+    const ciph = r.querySelector('#cipher-badge');
+    if (ciph) ciph.textContent = d.cipher;
+
+    const chatAsEl = r.querySelector('#chat-as-label');
+    if (chatAsEl) chatAsEl.textContent = d.chatAs;
+
+    // Quick Chips
+    r.querySelectorAll('.chip-btn').forEach(btn => {
+      const k = btn.dataset.key;
+      if (k && d.chips[k]) {
+        btn.textContent = d.chips[k].label;
+        btn.dataset.text = d.chips[k].text;
+      }
+    });
+
+    // Message Input & Send Button
+    i.placeholder = d.placeholder;
+    if (sendBtn) sendBtn.textContent = d.sendBtn;
+
+    // Re-render Chat Messages: Swap Primary & Translation subtitle
+    m.querySelectorAll('.msg').forEach(msg => {
+      const enText = msg.dataset.en;
+      const ruText = msg.dataset.ru;
+      const bText = msg.querySelector('.bubble-text');
+      const trText = msg.querySelector('.tr');
+      if (enText && ruText && bText && trText) {
+        if (isRu) {
+          bText.textContent = ruText;
+          trText.textContent = 'EN: ' + enText;
+        } else {
+          bText.textContent = enText;
+          trText.textContent = 'RU: ' + ruText;
+        }
+      }
+      const roleEn = msg.dataset.roleEn;
+      const roleRu = msg.dataset.roleRu;
+      const badgeEl = msg.querySelector('.msg-role-badge');
+      if (roleEn && roleRu && badgeEl) {
+        badgeEl.textContent = isRu ? roleRu : roleEn;
+      }
+      const nameEn = msg.dataset.nameEn;
+      const nameRu = msg.dataset.nameRu;
+      const nameEl = msg.querySelector('.msg-name');
+      if (nameEn && nameRu && nameEl) {
+        nameEl.textContent = isRu ? nameRu : nameEn;
+      }
+    });
+
+    // Right Deal Board
+    const btProc = r.querySelector('#btitle-proc');
+    if (btProc) btProc.textContent = d.btitleProc;
+
+    const btVer = r.querySelector('#btitle-ver');
+    if (btVer) btVer.textContent = d.btitleVer;
+
+    const cH3 = r.querySelector('#contract-h3');
+    if (cH3) cH3.textContent = d.contractH3;
+
+    const cStat = r.querySelector('#contract-status');
+    if (cStat) cStat.textContent = d.contractStatus;
+
+    const eLbl = r.querySelector('#est-label');
+    if (eLbl) eLbl.textContent = d.estLabel;
+
+    const lp = r.querySelector('#lbl-price');
+    if (lp) lp.textContent = d.lblPrice;
+
+    const la = r.querySelector('#lbl-amount');
+    if (la) la.textContent = d.lblAmount;
+
+    const lt = r.querySelector('#lbl-test');
+    if (lt) lt.textContent = d.lblTest;
+
+    const lpr = r.querySelector('#lbl-procedure');
+    if (lpr) lpr.textContent = d.lblProc;
+
+    // Translate procedure text if it matches defaults
+    if (isRu && procInp.value.trim() === i18n.en.defaultProc) {
+      procInp.value = i18n.ru.defaultProc;
+    } else if (!isRu && procInp.value.trim() === i18n.ru.defaultProc) {
+      procInp.value = i18n.en.defaultProc;
+    }
+
+    if (saveBtn) saveBtn.textContent = d.saveBtn;
+
+    const hintEl = r.querySelector('#hint-text');
+    if (hintEl) hintEl.innerHTML = d.hintText;
+
+    // Mobile tabs
+    const mRail = r.querySelector('.mobile-tab-btn[data-target="rail"]');
+    if (mRail) mRail.textContent = d.tabRail;
+
+    const mChat = r.querySelector('.mobile-tab-btn[data-target="chat"]');
+    if (mChat) mChat.textContent = d.tabChat;
+
+    const mBoard = r.querySelector('.mobile-tab-btn[data-target="board"]');
+    if (mBoard) mBoard.textContent = d.tabBoard;
+
+    // Modal
+    const mTitle = r.querySelector('#modal-title');
+    if (mTitle) mTitle.textContent = d.modalTitle;
+
+    const lmName = r.querySelector('#lbl-modal-name');
+    if (lmName) lmName.textContent = d.lblModalName;
+
+    const lmRole = r.querySelector('#lbl-modal-role');
+    if (lmRole) lmRole.textContent = d.lblModalRole;
+
+    const lmColor = r.querySelector('#lbl-modal-color');
+    if (lmColor) lmColor.textContent = d.lblModalColor;
+
+    if (closeAddPBtn) closeAddPBtn.textContent = d.modalCancel;
+    if (submitAddPBtn) submitAddPBtn.textContent = d.modalSubmit;
+
+    renderParticipants();
+    updateCalculations();
+  }
+
+  langToggleBtn.addEventListener('click', (e) => {
+    const opt = e.target.closest('.lang-pill-opt');
+    if (opt) {
+      setLanguage(opt.dataset.val);
+    } else {
+      const current = l.value;
+      setLanguage(current === 'English' ? 'Русский' : 'English');
+    }
+  });
+
+  l.addEventListener('change', () => setLanguage(l.value));
+
+  // Translation Visibility Toggle Switch (Show / Hide .tr subtitles)
+  transVisToggle.addEventListener('change', () => {
+    const show = transVisToggle.checked;
+    m.querySelectorAll('.tr').forEach(tr => {
+      tr.classList.toggle('hidden-translation', !show);
+    });
+  });
+
+  // Calculate total settlement
+  function updateCalculations() {
+    try {
+      const pMatch = priceInp.value.replace(/,/g, '').match(/\d+(\.\d+)?/);
+      const aMatch = amountInp.value.replace(/,/g, '').match(/\d+(\.\d+)?/);
+      if (pMatch && aMatch && estTotal) {
+        const total = parseFloat(pMatch[0]) * parseFloat(aMatch[0]);
+        const isCrypto = n.textContent.includes('Crypto') || n.textContent.includes('Крипто');
+        estTotal.textContent = total.toLocaleString('en-US') + (isCrypto ? ' USDT' : ' USD');
+      }
+    } catch(e) {}
+  }
+
+  // Generate dynamic pseudo-hash based on terms
+  function updateHash() {
+    if (!dealHash) return;
+    const str = [n.textContent, priceInp.value, amountInp.value, testInp.value, procInp.value].join('|');
+    let hash = 0;
+    for (let j = 0; j < str.length; j++) {
+      hash = ((hash << 5) - hash) + str.charCodeAt(j);
+      hash |= 0;
+    }
+    const hex = Math.abs(hash).toString(16).padStart(8, '0');
+    dealHash.innerHTML = 'SHA-256: <span>' + hex + 'a48e9d0...f72b' + hex.slice(0, 4) + '</span>';
+  }
+
+  [priceInp, amountInp, testInp, procInp].forEach(el => {
+    el.addEventListener('input', () => {
+      updateCalculations();
+      updateHash();
+    });
+  });
+
+  // Quick Chips
+  r.querySelectorAll('.chip-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      i.value = btn.dataset.text;
+      i.focus();
+    });
+  });
+
+  // Send message as chosen participant
+  function sendMessage() {
+    let t = i.value.trim();
+    if (!t) return;
+
+    const isRu = l.value.includes('Русский');
+    const speaker = participants.find(p => p.id === currentSpeakerId) || participants[0];
+    const isMe = speaker.id === 'seller';
+    const sName = isRu ? (speaker.nameRu || speaker.nameEn) : speaker.nameEn;
+    const sRole = isRu ? (speaker.roleRu || speaker.roleEn) : speaker.roleEn;
+
+    let d = document.createElement('div');
+    d.className = 'msg' + (isMe ? ' me' : '');
+    d.dataset.sender = speaker.id;
+    d.dataset.en = t;
+    d.dataset.ru = t;
+    d.dataset.nameEn = speaker.nameEn;
+    d.dataset.nameRu = speaker.nameRu || speaker.nameEn;
+    d.dataset.roleEn = speaker.roleEn;
+    d.dataset.roleRu = speaker.roleRu || speaker.roleEn;
+
+    const now = new Date();
+    const timeStr = now.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+
+    let wrap = document.createElement('div');
+    wrap.className = 'bubble-wrap';
+
+    let meta = document.createElement('div');
+    meta.className = 'msg-meta';
+
+    if (isMe) {
+      meta.innerHTML = `
+        <span class="msg-time">${timeStr} · </span>
+        <span class="msg-role-badge" style="background:rgba(153,69,255,0.2);color:#c99aff;">${sRole}</span>
+        <span class="msg-name">${sName}</span>
+      `;
+    } else {
+      meta.innerHTML = `
+        <span class="msg-name">${sName}</span>
+        <span class="msg-role-badge" style="background:${speaker.color}22;color:${speaker.color};">${sRole}</span>
+        <span class="msg-time">· ${timeStr}</span>
+      `;
+    }
+
+    let bubble = document.createElement('div');
+    bubble.className = 'bubble';
+    if (speaker.id === 'escrow') bubble.classList.add('escrow-bubble');
+    if (speaker.id === 'legal') bubble.classList.add('legal-bubble');
+
+    let bText = document.createElement('span');
+    bText.className = 'bubble-text';
+    bText.textContent = t;
+    bubble.appendChild(bText);
+
+    let trSpan = document.createElement('span');
+    trSpan.className = 'tr' + (transVisToggle.checked ? '' : ' hidden-translation');
+    trSpan.textContent = isRu ? 'EN: ' + t : 'RU: ' + t;
+    bubble.appendChild(trSpan);
+
+    wrap.appendChild(meta);
+    wrap.appendChild(bubble);
+
+    let avatar = document.createElement('i');
+    avatar.className = 'avatar';
+    avatar.textContent = speaker.short;
+    avatar.style.background = speaker.color;
+    avatar.style.color = (speaker.color === '#bd00ff' || speaker.color === '#ff0055') ? '#ffffff' : '#03080e';
+    avatar.style.boxShadow = `0 0 12px ${speaker.color}66`;
+
+    d.appendChild(avatar);
+    d.appendChild(wrap);
+    m.appendChild(d);
+    i.value = '';
+    m.scrollTop = m.scrollHeight;
+  }
+
+  sendBtn.addEventListener('click', sendMessage);
+  i.addEventListener('keydown', (e) => {
+    if (e.key === 'Enter') {
+      e.preventDefault();
+      sendMessage();
+    }
+  });
+
+  // Save as .txt
+  saveBtn.addEventListener('click', () => {
+    const isRu = l.value.includes('Русский');
+    let pList = participants.map(p => {
+      const name = isRu ? (p.nameRu || p.nameEn) : p.nameEn;
+      const role = isRu ? (p.roleRu || p.roleEn) : p.roleEn;
+      return ` - ${name} [${role}]`;
+    }).join('\n');
+
+    let x = [
+      '=====================================================',
+      '       BILINGUAL BRIDGE — ' + (isRu ? 'ПРОТОКОЛ СДЕЛКИ' : 'DEAL RECORD') + '        ',
+      '=====================================================',
+      (isRu ? 'КОМНАТА: ' : 'ROOM: ') + n.textContent.toUpperCase(),
+      (isRu ? 'ВРЕМЯ: ' : 'TIMESTAMP: ') + new Date().toISOString(),
+      (isRu ? 'ВЛАДЕЛЕЦ: ' : 'OWNED BY: ') + 'NIKOLAS',
+      (isRu ? 'КАНАЛ: ' : 'CHANNEL: ') + (isRu ? 'ЛОКАЛЬНЫЙ СЕАНС БЕЗ СЕРВЕРНОГО СЛЕДА' : 'ZERO TRACE LOCAL MULTI-PARTY SESSION'),
+      (isRu ? 'АКТИВНЫЕ УЧАСТНИКИ (' : 'ACTIVE PARTICIPANTS (') + participants.length + '):',
+      pList,
+      '-----------------------------------------------------',
+      (isRu ? 'ПАРАМЕТРЫ СМАРТ-КОНТРАКТА:' : 'SMART CONTRACT SPECIFICATIONS:'),
+      (isRu ? 'Цена: ' : 'Price: ') + priceInp.value,
+      (isRu ? 'Объем: ' : 'Amount: ') + amountInp.value,
+      (isRu ? 'Тест: ' : 'Test: ') + testInp.value,
+      (isRu ? 'Процедура: ' : 'Procedure: ') + procInp.value,
+      (isRu ? 'Расчетная сумма: ' : 'Estimated Settlement: ') + (estTotal ? estTotal.textContent : 'N/A'),
+      (isRu ? 'Контрольный хеш: ' : 'Checksum: ') + (dealHash ? dealHash.textContent.replace(/\s+/g, ' ') : ''),
+      '====================================================='
+    ].join('\n');
+
+    let b = new Blob([x], { type: 'text/plain;charset=utf-8' });
+    let a = document.createElement('a');
+    a.href = URL.createObjectURL(b);
+    a.download = (n.textContent.toLowerCase().replace(/\s+/g, '-') || 'crypto') + '-deal-procedure.txt';
+    a.click();
+    URL.revokeObjectURL(a.href);
+    savedStatus.textContent = isRu ? i18n.ru.savedText : i18n.en.savedText;
+    setTimeout(() => {
+      savedStatus.textContent = '';
+    }, 4000);
+  });
+
+  // Mobile Tabs switcher
+  function switchMobileTab(targetId) {
+    const tabs = {
+      'rail': r.querySelector('#tab-rail'),
+      'chat': r.querySelector('#tab-chat'),
+      'board': r.querySelector('#tab-board')
+    };
+    r.querySelectorAll('.mobile-tab-btn').forEach(btn => {
+      btn.classList.toggle('active', btn.dataset.target === targetId);
+    });
+    Object.keys(tabs).forEach(k => {
+      if (tabs[k]) {
+        tabs[k].classList.toggle('active-tab', k === targetId);
+      }
+    });
+  }
+
+  r.querySelectorAll('.mobile-tab-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      switchMobileTab(btn.dataset.target);
+    });
+  });
+
+  renderParticipants();
+  updateCalculations();
+  updateHash();
+})();
+</script>
+<footer class="site-footer">
+  &copy; 2077 BILINGUAL BRIDGE CORP. ALL TEMPORAL RIGHTS RESERVED.
+  <div class="legal-badge">
+    <span>&#9672; Patent No. PH-2077-0114-NS</span>
+    <span class="sep">|</span>
+    <span>&#9919; License NS-STARTUP-2026 &middot; Licensed to Nikolas Segurado</span>
+  </div>
+</footer>
+</div>
+</body>
+</html>
