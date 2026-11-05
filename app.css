@@ -187,6 +187,25 @@ body[data-nsa="sessions"] #nsa-sessions { display: flex; }
   background: rgba(251,238,0,.04); border-radius: 6px;
 }
 
+
+/* Interface language switch (first page + access screens) */
+.nsa-lang-switch {
+  position: fixed; top: 14px; right: 16px; z-index: 140;
+  display: flex; gap: 4px; padding: 4px; border-radius: 999px;
+  border: 1px solid rgba(0,240,255,.3); background: rgba(6,17,30,.92);
+  backdrop-filter: blur(8px);
+}
+.nsa-lang-switch button {
+  border: 0; background: transparent; color: #8aa4b8; cursor: pointer;
+  padding: 5px 11px; border-radius: 999px;
+  font-family: 'JetBrains Mono', monospace; font-size: 10px; letter-spacing: .14em;
+  transition: color .15s, background .15s;
+}
+.nsa-lang-switch button:hover { color: #e6f6f9; }
+.nsa-lang-switch button.active { background: rgba(251,238,0,.16); color: #fbee00; }
+body[data-nsa="app"] .nsa-lang-switch { display: none; }
+@media (max-width: 640px) { .nsa-lang-switch { top: 8px; right: 8px; } }
+
 @media (max-width: 640px) {
   .nsa-card { padding: 20px 16px; border-radius: 14px; }
   .nsa-title { font-size: 17px; }

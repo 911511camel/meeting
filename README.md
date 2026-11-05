@@ -9,6 +9,14 @@ Branded for **NIKOLAS SEGURADO — STARTUP PROJECT**.
 - Live site: https://meeting.niko.center/
 - Static site, no build step
 
+## Interface language (EN / RU)
+
+The first screen (access gate) has an **EN | RU** switch in the top-right corner.
+The choice translates the whole access layer (gate, registration, rooms, sessions,
+dialogs) and also drives the deal room's own bilingual UI; picking EN/RU inside the
+deal room switches the access layer back. The choice is stored in `localStorage`
+(`nsa.v1.lang`) and restored on the next visit.
+
 ## Access flow (local build)
 
 1. **Gate** — the terminal asks for an access code. Default: `NIKOLAS-2077`
