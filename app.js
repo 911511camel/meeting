@@ -4,7 +4,7 @@
   /* NIKOLAS SEGURADO · Bilingual Bridge access layer
      gate (EN/RU) -> register / sign-in -> room -> session (1x password) */
 
-  var ACCESS_CODE = "NIKOLAS-2077";
+  var ACCESS_CODE = "911";
   var K = {
     users: "nsa.v1.users", current: "nsa.v1.current", sessions: "nsa.v1.sessions",
     unlock: "nsa.v1.unlock", gate: "nsa.v1.gate", lang: "nsa.v1.lang"
@@ -20,7 +20,7 @@
     en: {
       "gate.sub": "Password protected terminal. Enter the access code to open the identity layer.",
       "gate.codeLabel": "Access code", "gate.ph": "access code", "gate.btn": "UNLOCK TERMINAL",
-      "gate.hintHtml": "Default code: <code>NIKOLAS-2077</code> — change <code>ACCESS_CODE</code> in app.js",
+      "gate.hintHtml": "Access code: <code>911</code> — change <code>ACCESS_CODE</code> in app.js",
       "gate.err": "Invalid access code.",
       "auth.kicker": "IDENTITY LAYER", "auth.title": "DEAL ROOM ACCESS",
       "auth.sub": "Register with your name, a password and the languages you speak. Existing members can sign in.",
@@ -53,7 +53,7 @@
     ru: {
       "gate.sub": "Защищённый терминал. Введите код доступа, чтобы открыть уровень идентификации.",
       "gate.codeLabel": "Код доступа", "gate.ph": "код доступа", "gate.btn": "РАЗБЛОКИРОВАТЬ ТЕРМИНАЛ",
-      "gate.hintHtml": "Код по умолчанию: <code>NIKOLAS-2077</code> — измените <code>ACCESS_CODE</code> в app.js",
+      "gate.hintHtml": "Код доступа: <code>911</code> — измените <code>ACCESS_CODE</code> в app.js",
       "gate.err": "Неверный код доступа.",
       "auth.kicker": "УРОВЕНЬ ИДЕНТИФИКАЦИИ", "auth.title": "ДОСТУП К ПЕРЕГОВОРНОЙ",
       "auth.sub": "Зарегистрируйтесь: имя, пароль и языки, на которых вы говорите. Постоянные участники могут войти.",
