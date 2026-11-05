@@ -835,8 +835,8 @@
   /* Compose Input Area */
   .compose {
     display: flex;
-    gap: 10px;
-    padding: 14px 18px;
+    gap: 14px;
+    padding: 18px 22px;
     border-top: 1px solid var(--border-light);
     background: rgba(6, 17, 30, 0.95);
     backdrop-filter: blur(16px);
@@ -848,9 +848,10 @@
     color: #ffffff;
     background: #081726;
     border: 1px solid rgba(0, 240, 255, 0.25);
-    border-radius: 8px;
-    padding: 12px 16px;
-    font-size: 13px;
+    border-radius: 14px;
+    padding: 20px 22px;
+    min-height: 64px;
+    font-size: 15px;
     outline: none;
     transition: all 0.2s ease;
   }
@@ -874,8 +875,9 @@
     border: 1px solid #43e8e0;
     color: #021113;
     background: linear-gradient(135deg, #00f0ff 0%, #00bcff 100%);
-    padding: 0 20px;
-    border-radius: 8px;
+    padding: 0 30px;
+    min-height: 64px;
+    border-radius: 14px;
     cursor: pointer;
     transition: all 0.2s ease;
     text-transform: uppercase;
@@ -1379,94 +1381,8 @@
     </div>
 
     <div class="messages" id="messages">
-      <!-- Buyer message -->
-      <div class="msg" data-sender="buyer" data-en="I want to buy 2 BTC. Can we start with a small test?" data-ru="Я хочу купить 2 BTC. Можем начать с небольшого теста?" data-role-en="COUNTERPARTY" data-role-ru="КОНТРАГЕНТ" data-name-en="BUYER (INSTITUTIONAL)" data-name-ru="ПОКУПАТЕЛЬ">
-        <i class="avatar buyer-av">B</i>
-        <div class="bubble-wrap">
-          <div class="msg-meta">
-            <span class="msg-name">BUYER (INSTITUTIONAL)</span>
-            <span class="msg-role-badge" style="background:rgba(0,240,255,0.15);color:var(--c);">COUNTERPARTY</span>
-            <span class="msg-time">· 10:41 AM</span>
-          </div>
-          <div class="bubble">
-            <span class="bubble-text">I want to buy 2 BTC. Can we start with a small test?</span>
-            <span class="tr">RU: Я хочу купить 2 BTC. Можем начать с небольшого теста?</span>
-          </div>
-        </div>
-      </div>
-
-      <!-- Seller (You) message -->
-      <div class="msg me" data-sender="seller" data-en="Yes. Put the proposed price and procedure on the board." data-ru="Да. Укажите цену и процедуру на доске." data-role-en="SELLER (YOU)" data-role-ru="ПРОДАВЕЦ (ВЫ)" data-name-en="OTC DESK" data-name-ru="OTC ДЕСК">
-        <i class="avatar seller-av">S</i>
-        <div class="bubble-wrap">
-          <div class="msg-meta">
-            <span class="msg-time">10:42 AM · </span>
-            <span class="msg-role-badge" style="background:rgba(153,69,255,0.2);color:#c99aff;">SELLER (YOU)</span>
-            <span class="msg-name">OTC DESK</span>
-          </div>
-          <div class="bubble">
-            <span class="bubble-text">Yes. Put the proposed price and procedure on the board.</span>
-            <span class="tr">EN: Да. Укажите цену и процедуру на доске.</span>
-          </div>
-        </div>
-      </div>
-
-      <!-- Escrow Arbiter message -->
-      <div class="msg" data-sender="escrow" data-en="⚡ Escrow multi-sig vault #774-BTC initialized. Awaiting tranche test verification before settlement." data-ru="⚡ Мультисиг-хранилище #774-BTC инициализировано. Ожидается проверка тестового транша перед расчетом." data-role-en="CUSTODIAN" data-role-ru="ХРАНИТЕЛЬ" data-name-en="ESCROW ARBITER (BITGO)" data-name-ru="ЭСКРОУ-АРБИТР (BITGO)">
-        <i class="avatar escrow-av">E</i>
-        <div class="bubble-wrap">
-          <div class="msg-meta">
-            <span class="msg-name">ESCROW ARBITER (BITGO)</span>
-            <span class="msg-role-badge" style="background:rgba(204,255,0,0.15);color:var(--a);">CUSTODIAN</span>
-            <span class="msg-time">· 10:42 AM</span>
-          </div>
-          <div class="bubble escrow-bubble">
-            <span class="bubble-text">⚡ Escrow multi-sig vault #774-BTC initialized. Awaiting tranche test verification before settlement.</span>
-            <span class="tr">RU: Мультисиг-хранилище #774-BTC инициализировано. Ожидается проверка тестового транша перед расчетом.</span>
-          </div>
-        </div>
-      </div>
-
-      <!-- Legal / Notary message -->
-      <div class="msg" data-sender="legal" data-en="✓ Proof of Funds & AML clearing confirmed for both principals. Agreement terms are compliant." data-ru="✓ Подтверждение средств и проверка AML пройдены для обеих сторон. Условия соглашения соответствуют протоколу." data-role-en="NOTARY" data-role-ru="НОТАРИУС" data-name-en="COMPLIANCE & LEGAL" data-name-ru="КОМПЛАЕНС И ЮРИСТ">
-        <i class="avatar legal-av">L</i>
-        <div class="bubble-wrap">
-          <div class="msg-meta">
-            <span class="msg-name">COMPLIANCE &amp; LEGAL</span>
-            <span class="msg-role-badge" style="background:rgba(255,183,3,0.15);color:var(--gold);">NOTARY</span>
-            <span class="msg-time">· 10:43 AM</span>
-          </div>
-          <div class="bubble legal-bubble">
-            <span class="bubble-text">✓ Proof of Funds & AML clearing confirmed for both principals. Agreement terms are compliant.</span>
-            <span class="tr">RU: Подтверждение средств и проверка AML пройдены для обеих сторон. Условия соглашения соответствуют протоколу.</span>
-          </div>
-        </div>
-      </div>
-
-      <!-- Buyer follow-up -->
-      <div class="msg" data-sender="buyer" data-en="Done — please review the smart contract terms." data-ru="Готово — пожалуйста, проверьте условия смарт-контракта." data-role-en="COUNTERPARTY" data-role-ru="КОНТРАГЕНТ" data-name-en="BUYER (INSTITUTIONAL)" data-name-ru="ПОКУПАТЕЛЬ">
-        <i class="avatar buyer-av">B</i>
-        <div class="bubble-wrap">
-          <div class="msg-meta">
-            <span class="msg-name">BUYER (INSTITUTIONAL)</span>
-            <span class="msg-role-badge" style="background:rgba(0,240,255,0.15);color:var(--c);">COUNTERPARTY</span>
-            <span class="msg-time">· 10:43 AM</span>
-          </div>
-          <div class="bubble">
-            <span class="bubble-text">Done — please review the smart contract terms.</span>
-            <span class="tr">RU: Готово — пожалуйста, проверьте условия смарт-контракта.</span>
-          </div>
-        </div>
-      </div>
     </div>
 
-    <!-- Active Identity Selector (Speak as...) -->
-    <div class="identity-bar">
-      <span class="id-label" id="chat-as-label">CHAT AS:</span>
-      <div class="identity-pills" id="identity-pills">
-        <!-- populated dynamically -->
-      </div>
-    </div>
 
     <!-- Quick negotiation chips -->
     <div class="quick-chips" id="quick-chips-container">
@@ -1596,10 +1512,10 @@
 
   // Participants State with full bilingual definitions
   let participants = [
-    { id: 'seller', nameEn: 'Seller (You)', nameRu: 'Продавец (Вы)', short: 'S', roleEn: 'OTC Desk', roleRu: 'OTC Деск', color: '#bd00ff', isMe: true },
-    { id: 'buyer', nameEn: 'Buyer', nameRu: 'Покупатель', short: 'B', roleEn: 'Counterparty', roleRu: 'Контрагент', color: '#00f0ff', isMe: false },
-    { id: 'escrow', nameEn: 'Escrow Arbiter', nameRu: 'Эскроу-арбитр', short: 'E', roleEn: 'Custodian (BitGo)', roleRu: 'Хранитель (BitGo)', color: '#fbee00', isMe: false },
-    { id: 'legal', nameEn: 'Legal / Notary', nameRu: 'Юрист / Нотариус', short: 'L', roleEn: 'Compliance Officer', roleRu: 'Офицер комплаенса', color: '#ffb703', isMe: false }
+    { id: 'seller', nameEn: 'Seller Side', nameRu: 'Сторона продавца', short: 'S', roleEn: 'Primary Seller', roleRu: 'Основной продавец', color: '#bd00ff', isMe: true },
+    { id: 'buyer', nameEn: 'Buyer Side', nameRu: 'Сторона покупателя', short: 'B', roleEn: 'Primary Buyer', roleRu: 'Основной покупатель', color: '#00f0ff', isMe: false },
+    { id: 'escrow', nameEn: 'Intermediaries', nameRu: 'Посредники', short: 'I', roleEn: 'Brokers & Escrow', roleRu: 'Брокеры и эскроу', color: '#fbee00', isMe: false },
+    { id: 'legal', nameEn: 'Guarantor', nameRu: 'Гарант', short: 'G', roleEn: 'Deal Guarantor', roleRu: 'Гарант сделки', color: '#ffb703', isMe: false }
   ];
 
   let currentSpeakerId = 'seller';
@@ -1608,7 +1524,7 @@
   function renderParticipants() {
     const isRu = l.value.includes('Русский');
     rosterList.innerHTML = '';
-    idPillsContainer.innerHTML = '';
+    if (idPillsContainer) idPillsContainer.innerHTML = '';
 
     participants.forEach(p => {
       const pName = isRu ? (p.nameRu || p.nameEn) : p.nameEn;
@@ -1641,7 +1557,7 @@
         pill.classList.add('active');
         i.focus();
       });
-      idPillsContainer.appendChild(pill);
+      if (idPillsContainer) idPillsContainer.appendChild(pill);
     });
 
     const total = participants.length;
