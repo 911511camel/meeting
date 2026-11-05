@@ -1,0 +1,195 @@
+/* ============================================================
+   NIKOLAS SEGURADO · access layer for Bilingual Bridge
+   gate -> register/sign-in -> room -> session (password)
+   ============================================================ */
+
+/* Hide the deal-room shell until a session is opened */
+body:not([data-nsa="app"]) .bar,
+body:not([data-nsa="app"]) .mobile-tabs,
+body:not([data-nsa="app"]) .grid { display: none !important; }
+
+.nsa-screen {
+  position: fixed; inset: 0; z-index: 120; display: none;
+  align-items: center; justify-content: center; padding: 24px 16px;
+  background:
+    radial-gradient(circle at 82% 8%, rgba(189,0,255,.16), transparent 42%),
+    radial-gradient(circle at 12% 92%, rgba(0,240,255,.12), transparent 46%),
+    rgba(2,6,11,.975);
+  overflow-y: auto; color: #e6f6f9;
+  font-family: 'Plus Jakarta Sans', sans-serif;
+}
+body[data-nsa="gate"] #nsa-gate,
+body[data-nsa="auth"] #nsa-auth,
+body[data-nsa="rooms"] #nsa-rooms,
+body[data-nsa="sessions"] #nsa-sessions { display: flex; }
+
+.nsa-card {
+  position: relative; overflow: hidden; width: 100%; max-width: 560px;
+  padding: 26px 24px; border-radius: 18px;
+  background: rgba(6,17,30,.94);
+  border: 1px solid rgba(0,240,255,.25);
+  box-shadow: 0 0 48px rgba(0,240,255,.10), inset 0 1px 0 rgba(0,240,255,.18);
+}
+.nsa-card::before {
+  content: ""; position: absolute; inset: 0; pointer-events: none;
+  background: repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(0,240,255,.03) 3px);
+}
+.nsa-card > * { position: relative; z-index: 1; }
+
+.nsa-kicker {
+  font-family: 'JetBrains Mono', monospace; font-size: 9px; letter-spacing: .3em;
+  text-transform: uppercase; color: #fbee00; opacity: .9;
+}
+.nsa-title {
+  margin: 6px 0 4px; font-family: 'Orbitron', 'Chakra Petch', sans-serif;
+  font-size: 20px; letter-spacing: .14em; color: #e6f6f9;
+  text-shadow: 0 0 16px rgba(0,240,255,.45);
+}
+.nsa-sub { margin: 0 0 6px; font-size: 12px; line-height: 1.6; color: #8aa4b8; }
+.nsa-hint { margin: 12px 0 0; font-size: 10px; color: #536d80; font-family: 'JetBrains Mono', monospace; }
+.nsa-hint code { color: #fbee00; background: rgba(251,238,0,.08); padding: 1px 5px; border-radius: 4px; }
+
+.nsa-label {
+  display: block; margin: 14px 0 6px;
+  font-family: 'JetBrains Mono', monospace; font-size: 10px; letter-spacing: .18em;
+  text-transform: uppercase; color: #8aa4b8;
+}
+.nsa-input {
+  width: 100%; padding: 11px 12px; border-radius: 10px;
+  background: rgba(2,6,11,.85); border: 1px solid rgba(0,240,255,.2);
+  color: #e6f6f9; font-family: 'JetBrains Mono', monospace; font-size: 13px;
+  outline: none; transition: border-color .18s, box-shadow .18s;
+}
+.nsa-input:focus { border-color: rgba(0,240,255,.65); box-shadow: 0 0 0 3px rgba(0,240,255,.08); }
+
+.nsa-btn {
+  margin-top: 14px; padding: 12px 16px; border: 0; border-radius: 10px; cursor: pointer;
+  font-family: 'Orbitron', 'Chakra Petch', sans-serif; font-size: 12px; letter-spacing: .12em;
+  transition: transform .15s, box-shadow .15s, opacity .15s;
+}
+.nsa-btn:hover { transform: translateY(-1px); }
+.nsa-btn.primary {
+  width: 100%; color: #02121a; font-weight: 800;
+  background: linear-gradient(135deg, #00f0ff 0%, #00a8ff 55%, #bd00ff 100%);
+  box-shadow: 0 0 22px rgba(0,240,255,.35);
+}
+.nsa-btn.ghost {
+  background: transparent; color: #00f0ff; border: 1px solid rgba(0,240,255,.32);
+}
+.nsa-btn.ghost:hover { background: rgba(0,240,255,.08); }
+.nsa-row { display: flex; gap: 10px; flex-wrap: wrap; align-items: center; }
+.nsa-row .nsa-btn { width: auto; }
+
+.nsa-tabs {
+  display: flex; gap: 6px; margin: 10px 0 2px; padding: 4px; border-radius: 10px;
+  background: rgba(2,6,11,.65); border: 1px solid rgba(0,240,255,.15);
+}
+.nsa-tab {
+  flex: 1; padding: 9px; border: 0; border-radius: 8px; cursor: pointer;
+  background: transparent; color: #8aa4b8;
+  font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: .12em;
+}
+.nsa-tab.active { background: rgba(0,240,255,.12); color: #00f0ff; }
+
+.nsa-chips { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 4px; }
+.nsa-chip {
+  padding: 7px 13px; border-radius: 999px; cursor: pointer;
+  border: 1px solid rgba(0,240,255,.2); background: rgba(0,240,255,.04);
+  color: #8aa4b8; font-size: 12px; transition: all .15s;
+}
+.nsa-chip:hover { border-color: rgba(0,240,255,.45); color: #e6f6f9; }
+.nsa-chip.active {
+  border-color: rgba(251,238,0,.65); background: rgba(251,238,0,.1); color: #fbee00;
+  box-shadow: 0 0 12px rgba(251,238,0,.18);
+}
+
+.nsa-error { min-height: 16px; margin-top: 10px; color: #ff0055; font-size: 11px; font-family: 'JetBrains Mono', monospace; }
+
+.nsa-room {
+  display: flex; align-items: center; gap: 14px; width: 100%; margin-top: 10px;
+  padding: 15px; border-radius: 14px; cursor: pointer; text-align: left; color: inherit;
+  border: 1px solid rgba(0,240,255,.2); background: rgba(6,17,30,.8);
+  transition: border-color .18s, transform .18s, box-shadow .18s;
+}
+.nsa-room:hover {
+  border-color: rgba(0,240,255,.6); transform: translateY(-1px);
+  box-shadow: 0 10px 30px rgba(0,240,255,.12);
+}
+.nsa-room .ico {
+  flex: 0 0 auto; width: 44px; height: 44px; border-radius: 12px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 18px; color: #00f0ff; border: 1px solid rgba(0,240,255,.35);
+  background: rgba(0,240,255,.06);
+}
+.nsa-room .rm-body { flex: 1; min-width: 0; }
+.nsa-room h4 { margin: 0 0 2px; font-family: 'Orbitron', sans-serif; font-size: 13px; letter-spacing: .1em; }
+.nsa-room p { margin: 0; font-size: 11px; color: #8aa4b8; }
+.nsa-room .rm-count { font-family: 'JetBrains Mono', monospace; font-size: 10px; color: #536d80; }
+
+.nsa-list { display: flex; flex-direction: column; gap: 8px; margin-top: 14px; }
+.nsa-session {
+  display: flex; align-items: center; gap: 12px; width: 100%; padding: 12px 14px;
+  border-radius: 12px; cursor: pointer; text-align: left; color: inherit;
+  border: 1px solid rgba(0,240,255,.18); background: rgba(6,17,30,.75);
+  transition: border-color .18s, background .18s;
+}
+.nsa-session:hover { border-color: rgba(0,240,255,.5); background: rgba(0,240,255,.05); }
+.nsa-session .s-body { flex: 1; min-width: 0; }
+.nsa-session .s-name { display: block; font-size: 13px; color: #e6f6f9; }
+.nsa-session .s-meta { display: block; margin-top: 2px; font-size: 10px; color: #536d80; font-family: 'JetBrains Mono', monospace; }
+.nsa-lock {
+  flex: 0 0 auto; font-family: 'JetBrains Mono', monospace; font-size: 9px;
+  letter-spacing: .14em; color: #fbee00; padding: 3px 9px; border-radius: 999px;
+  border: 1px solid rgba(251,238,0,.35); background: rgba(251,238,0,.06);
+}
+.nsa-empty {
+  margin-top: 14px; padding: 20px; text-align: center; font-size: 12px; color: #536d80;
+  border: 1px dashed rgba(0,240,255,.2); border-radius: 12px;
+}
+.nsa-back {
+  margin-bottom: 8px; padding: 0; border: 0; background: transparent; cursor: pointer;
+  color: #8aa4b8; font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: .1em;
+}
+.nsa-back:hover { color: #00f0ff; }
+
+/* Session toolbar inside the deal room */
+.nsa-session-bar {
+  position: relative; z-index: 25; display: none; flex-wrap: wrap; gap: 10px;
+  align-items: center; justify-content: space-between;
+  padding: 9px 16px; background: rgba(6,17,30,.94);
+  border-bottom: 1px solid rgba(0,240,255,.22);
+  font-family: 'JetBrains Mono', monospace;
+}
+.nsa-session-bar .sb-left,
+.nsa-session-bar .sb-right { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; }
+.nsa-session-bar .sb-room { color: #00f0ff; font-size: 10px; letter-spacing: .2em; text-transform: uppercase; }
+.nsa-session-bar .sb-name { color: #e6f6f9; font-size: 12px; }
+.nsa-session-bar .sb-count { color: #536d80; font-size: 10px; }
+.nsa-user {
+  display: flex; gap: 8px; align-items: center; padding: 3px 10px; border-radius: 999px;
+  border: 1px solid rgba(189,0,255,.35); background: rgba(189,0,255,.08);
+}
+.nsa-user b { font-size: 11px; color: #e6f6f9; }
+.nsa-user span { font-size: 9px; color: #8aa4b8; letter-spacing: .08em; }
+.nsa-session-bar button {
+  margin: 0; padding: 6px 10px; font-size: 10px; letter-spacing: .1em;
+  border-radius: 8px; border: 1px solid rgba(0,240,255,.3);
+  background: transparent; color: #00f0ff; cursor: pointer;
+  font-family: 'JetBrains Mono', monospace;
+}
+.nsa-session-bar button:hover { background: rgba(0,240,255,.1); }
+
+/* System notices inside the message stream */
+.nsa-sys {
+  margin: 4px auto; padding: 6px 12px; max-width: 90%; text-align: center;
+  font-family: 'JetBrains Mono', monospace; font-size: 10px; letter-spacing: .06em;
+  color: #536d80; border-left: 2px solid rgba(251,238,0,.5);
+  background: rgba(251,238,0,.04); border-radius: 6px;
+}
+
+@media (max-width: 640px) {
+  .nsa-card { padding: 20px 16px; border-radius: 14px; }
+  .nsa-title { font-size: 17px; }
+  .nsa-session-bar { padding: 8px 10px; }
+  .nsa-session-bar .sb-count { display: none; }
+}
